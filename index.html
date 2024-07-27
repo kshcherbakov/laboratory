@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab. REST</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="" />
+    <meta property="og:site_name" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+  </head>
+  <body class="">
+    
+    <p>
+      <button type="button" id="add">Добавить пользователя</button>
+    </p>
+    <p>
+      <button type="button" id="getinfo">Получить информацию о пользователе</button>
+    </p>
+    <p>
+      <button type="button" id="updateinfo">Обновить информацию о пользователе</button>
+    </p>
+    <p>
+      <button type="button" id="delete">Удалить пользователя</button>
+    </p>
+    <p>
+      <button type="button" id="auth">Авторизация пользователя</button>
+    </p>
+    <p>
+      <button type="button" id="bad">Неправильный запрос</button>
+    </p>
+    
+    
+    
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        $("#add").on("click",(e)=>{
+          e.preventDefault();
+          $.ajax({
+            url: '/users/add/', 
+            method: 'POST', 
+            data: {
+              name: 'Testame',
+              login: 'Textlogin'
+            }, 
+            dataType: 'json', 
+            success: function(response){
+              console.log('response:', response)
+            }
+          })
+        });
+        
+        $("#getinfo").on("click",(e)=>{
+          e.preventDefault();
+          $.ajax({
+            url: '/users/getinfo/', 
+            method: 'POST', 
+            data: {
+              id: 3213
+            }, 
+            dataType: 'json', 
+            success: function(response){
+              console.log('response:', response)
+            }
+          })
+        });
+        
+        $("#updateinfo").on("click",(e)=>{
+          e.preventDefault();
+          $.ajax({
+            url: '/users/updateinfo/', 
+            method: 'POST', 
+            data: {
+              id: 3213,
+              name: 'NewName'
+            }, 
+            dataType: 'json', 
+            success: function(response){
+              console.log('response:', response)
+            }
+          })
+        });
+        
+        $("#delete").on("click",(e)=>{
+          e.preventDefault();
+          $.ajax({
+            url: '/users/delete/', 
+            method: 'POST', 
+            data: {
+              id: 3213
+            }, 
+            dataType: 'json', 
+            success: function(response){
+              console.log('response:', response)
+            }
+          })
+        });
+        
+        $("#auth").on("click",(e)=>{
+          e.preventDefault();
+          $.ajax({
+            url: '/users/auth/', 
+            method: 'POST', 
+            data: {
+              login: 'TestLogin',
+              token: 'dsfdsfru76867ffdwffe'
+            },
+            dataType: 'json', 
+            success: function(response){
+              console.log('response:', response)
+            }
+          })
+        });
+        
+        $("#bad").on("click",(e)=>{
+          e.preventDefault();
+          $.ajax({
+            url: '/users/dfdsfj/', 
+            method: 'POST', 
+            data: {
+              id: 'fdsfsd'
+            },
+            dataType: 'json', 
+            success: function(response){
+              console.log('response:', response)
+            }
+          })
+        });
+        
+      })
+    </script>
+    
+  </body>
+</html>
